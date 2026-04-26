@@ -12,7 +12,9 @@
     "react": "latest",
     "react-dom": "latest",
     "@supabase/supabase-js": "latest",
-    "lucide-react": "latest"
+    "lucide-react": "latest",
+    "clsx": "latest",
+    "tailwind-merge": "latest"
   },
   "devDependencies": {
     "typescript": "latest",
