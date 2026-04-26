@@ -19,17 +19,29 @@ export default function Home() {
   }, []);
 
   return (
-    <main style={{ backgroundColor: 'black', height: '100vh', color: 'white', overflowY: 'scroll' }}>
-      {videos.length === 0 && <p style={{ textAlign: 'center', paddingTop: '20px' }}>Memuat Video...</p>}
-      {videos.map((vid) => (
-        <section key={vid.id} style={{ height: '100vh', position: 'relative' }}>
-          <video src={vid.video_url} style={{ height: '100%', width: '100%', objectFit: 'cover' }} autoPlay loop muted playsInline />
-          <div style={{ position: 'absolute', bottom: '20px', left: '20px', background: 'rgba(0,0,0,0.5)', padding: '10px' }}>
-            <h2>{vid.dramas?.title}</h2>
-            <p>Episode {vid.episode_number}</p>
-          </div>
-        </section>
-      ))}
-    </main>
+    <div style={{ backgroundColor: 'black', minHeight: '100vh', color: 'white', fontFamily: 'sans-serif' }}>
+      {videos.length === 0 ? (
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+          <p>Memuat Video...</p>
+        </div>
+      ) : (
+        <div style={{ overflowY: 'scroll', scrollSnapType: 'y mandatory', height: '100vh' }}>
+          {videos.map((vid) => (
+            <section key={vid.id} style={{ height: '100vh', scrollSnapAlign: 'start', position: 'relative' }}>
+              <video 
+                src={vid.video_url} 
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                autoPlay loop muted playsInline 
+              />
+              <div style={{ position: 'absolute', bottom: '40px', left: '20px', textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
+                <h1 style={{ fontSize: '24px', margin: 0 }}>{vid.dramas?.title || 'Drama Baru'}</h1>
+                <p style={{ fontSize: '16px' }}>Episode {vid.episode_number}</p>
+              </div>
+            </section>
+          ))}
+        </div>
+      )}
+    </div>
   );
 }
+
